@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>隔行变色鼠标高亮显示</title>
+</head>
+<body>
+	<ul id="box">
+		<li>first</li>
+		<li>first</li>
+		<li>first</li>
+		<li>first</li>
+		<li>first</li>
+	</ul>
+	<script>
+		var list = document.querySelectorAll('#box li');
+		var i = 0,len = list.length;
+		for (; i < len; i++) {
+			if(i % 2 == 0)
+				list[i].style.backgroundColor = 'green';
+			else
+				list[i].style.backgroundColor = 'red';
+
+			list[i].onmouseover = function(){//鼠标经过事件
+				// 记录原来颜色
+				bg = this.style.backgroundColor;
+				this.style.backgroundColor = 'yellow';
+			}
+
+			list[i].onmouseout = function(){//鼠标离开事件 
+				this.style.backgroundColor = bg;
+			}
+		}
+	</script>
+</body>
+</html>

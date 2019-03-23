@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>显示与隐藏</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background-color: yellow;
+			margin: 30px auto;
+		}
+		#box2{
+			position: relative;
+			top:100px;
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+		}
+		.show{
+			display: block;
+		}
+		.hide{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="box2" class="hide"></div>
+	</div>
+	<script>
+		var isShow = true;
+		var box = document.getElementById('box');
+		var box2 = document.getElementById('box2');
+		// console.dir(window.document);
+		box.onmouseover = function(){
+			box2.className = 'show';
+			isShow = true;
+		}
+		box.onmouseout = function(){
+			box2.className = 'hide';
+			isShow = false;
+		}
+		
+	</script>
+</body>
+</html>

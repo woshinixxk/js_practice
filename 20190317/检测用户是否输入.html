@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>检测用户是否输入</title>
+	<style>
+		.bg{
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<form action="1.php">
+		<input type="text" name="name" id="name"><br>
+		<input type="password" name="pwd" id="pwd"><br>
+		<input type="submit" id="btn" value="登录">
+
+		<script>
+			/**
+				新知识
+				--------------
+				1 className (HTML DOM 里面的属性) 设置或返回元素的 class 属性。
+				2 命名，如txtSearch 前缀txt表示是文本框，后缀Search表示功能是搜索
+			*/
+
+			var btn = document.getElementById('btn');
+			btn.onclick = function(){
+				// 获取name 文本框内的值
+				var txtName = document.getElementById('name');
+				// 判断用户名是否合法（3-6位之间） 不满足高亮提示
+				if(txtName.value.length < 3 || txtName.value.length > 6){
+					// 设置类名显示高亮
+					txtName.className = 'bg';
+					return false;
+				}else
+					txtName.className = '';
+
+				// 获取密码
+				var txtPwd = document.getElementById('pwd');
+				// 判断密码是否合法（6 - 8 位之间） 不满足高亮提示
+				if(txtPwd.value.length < 6 || txtPwd.value.length > 8){
+					// 设置类名显示高亮
+					txtPwd.className = 'bg';
+					return false;
+				}else
+					txtPwd.className = '';
+
+				// 取消submit提交的默认行为
+				return false;
+			}
+
+		</script>
+
+	</form>
+</body>
+</html>

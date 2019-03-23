@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> 自定义属性 </title>
+</head>
+<body>
+	<div id="box" stuId="1"></div>
+	<script>
+		/**
+			新知识
+			--------------
+			1 getAttribute('key') 获取标签中的自定义属性，也可以是标签自带的属性
+			2 setAttribute('key','value') 设置标签中的自定义属性，也可以是标签自带的属性
+		*/	
+
+		var box = document.getElementById('box');
+		// 获取box中的自定义属性
+		console.log(box.getAttribute('stuId'));
+		console.log(box.getAttribute('id'));
+		// 设置box的自定义属性
+		box.setAttribute('stuId','2');
+		box.setAttribute('class','bx');
+
+	</script>
+</body>
+</html>

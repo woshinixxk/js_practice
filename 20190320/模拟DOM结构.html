@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟DOM结构</title>
+</head>
+<body>
+	<div3 id="box"></div3>
+	<script>
+		var box = document.getElementById('box');
+		// 元素节点
+		// nodeName 标签的名称
+		// nodeType 节点的类型 1 元素
+		// nodeValue 当是元素节点的时候nodeValue 始终格式null
+		// console.dir(box);
+
+		// 属性节点 - 对象
+		// 获取属性节点
+		// nodeName  属性的名称
+		// nodeType  节点的类型 2 属性节点 
+		// nodeValue 属性的值
+		// var attr = box.getAttributeNode('id');
+		// console.dir(attr);
+
+		// 模拟DOM文档的结构
+		// 属性 id className nodeName nodeType nodeValue
+		function Node(options){// options对象  --构造函数
+			// 当不传参数的时候，options是undefined
+			// Cannot read property 'id' of undefined
+			// console.dir(options);
+ 				
+ 			// 设置默认值
+			options = options || {};
+			this.id = options.id || '';
+			this.className = options.className || '';
+			this.nodeName = options.nodeName || '';
+			this.nodeType = options.nodeType || 1 ;
+			this.nodeValue = options.nodeValue || null;
+
+			// 设置一个属性记录子元素
+			this.children = [];
+		}
+
+		// 1 html元素
+		var html = new Node({
+			nodeName :'HTML',
+		});
+
+		// 2 head元素
+		var head = new Node({
+			nodeName:'HEAD',
+		});
+		// head元素是html的子元素
+		html.children.push(head);
+
+		// 3 body元素
+		var body = new Node({
+			nodeName : 'BODY',
+		});
+		// body元素是html的子元素
+		html.children.push(body);
+
+		// 4 div 元素
+		var div =  new Node({
+			id:'box',
+			nodeName:'DIV',
+		});
+		// div元素是body元素的子元素
+		body.children.push(div);
+
+		// 5 p元素
+		var p =  new Node({
+			id:'p',
+			nodeName:'P',
+			nodeType:3,
+		});
+		// div元素是body元素的子元素
+		body.children.push(p);
+		console.dir(html);
+		
+	</script>
+</body>
+</html>

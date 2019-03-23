@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第一个和最后一个子节点</title>
+</head>
+<body>
+	<ul id="box">
+		<li>first</li>
+		<li>2222</li>
+		<li>3333</li>
+		<li>4444</li>
+		<li>5555</li>
+		<li>last</li>
+	</ul>
+
+	<script>
+		// 获取父元素
+		var box = document.getElementById('box');
+
+		// // 获取第一个子节点
+		// console.log(box.firstChild);
+		// // 获取第一个子元素,（IE9以下不兼容）
+		// console.log(box.firstElementChild);
+
+		// // 获取最后一个子节点
+		// console.log(box.lastChild);
+		// // 获取最后一个子元素,（IE9以下不兼容，解决措施参考MDN）
+		// console.log(box.lastElementChild);
+
+
+		// 解决IE9以下获取第一个子元素不兼容的问题
+		function getFirstElementChild(parent){
+			// 如果当前浏览器支持firstElementChild
+			if(parent.firstElementChild){
+				return parent.firstElementChild; 
+			}
+			// var node, nodes = this.childNodes, i = 0;// 函数中this指的是window
+			var node,nodes = parent.childNodes,i = 0;
+            while (node = nodes[i++]) { // 这里循环条件推荐学习！！！！非常灵活，先获取值，再++,即先获取nodes[0]，之后i++;
+                if (node.nodeType === 1) {// 如果是元素节点，
+                    return node;// 返回元素节点
+                }
+            }
+            return null;// 不是元素节点，则返回空
+		}
+
+		// 解决IE9以下获取最后一个子元素不兼容的问题
+		function getLastElementChild(parent){
+			// 如果当前浏览器支持firstElementChild
+			if(parent.lastElementChild){
+				return parent.lastElementChild; 
+			}
+			// var node, nodes = this.childNodes, i = 0;// 函数中this指的是window
+			var node, nodes = parent.childNodes, i = nodes.length - 1;
+            while (node = nodes[i--]) { // 这里循环条件推荐学习！！！！从后往前找,非常灵活，先获取值，再--,即先获取nodes[nodes.length - 1]，之后i++;
+                if (node.nodeType === 1) {// 如果是元素节点，
+                    return node;// 返回元素节点
+                }
+            }
+            return null;// 不是元素节点，则返回空
+		}
+
+		var firstElement = getFirstElementChild(box);
+		console.log(firstElement);
+
+		var lastElement = getLastElementChild(box);
+		console.log(lastElement);
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 实现数字切换</title>
+</head>
+<body>
+	<img src="img/number0.png" alt="0" id="img" width="100px" height="100px"><br>
+	<input type="button" id="btn" value="切换">
+	
+	<script>
+		var arr = [
+			'img/number0.png',
+			'img/number1.png',
+			'img/number2.png',
+			'img/number3.png',
+			'img/number4.png',
+			'img/number5.png',
+			'img/number6.png',
+			'img/number7.png',
+			'img/number8.png',
+			'img/number9.png'
+		]
+		// 默认从0开始
+		var index = 0;
+		var btn = document.getElementById('btn');
+		var img = document.getElementById('img');
+		btn.onclick = function(){
+			index++;
+			img.src = arr[index];
+			if(index === arr.length - 1){
+				index = -1;
+			}
+		}
+	</script>
+</body>
+</html>

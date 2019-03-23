@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>设置下拉框中的选中项</title>
+</head>
+<body>
+	<select id="sel">
+		<option>请随机选择</option>
+		<option>回锅肉</option>
+		<option>叫花鸡</option>
+		<option>康师傅</option>
+		<option>红烧牛肉面</option>
+		<option>糖醋排骨</option>
+	</select>
+	<input id="btn" type="button" value="随机">
+	<p>思路：通过点击进行随机选择，先获取option选项的集合options，
+		生成对应索引值，在根据索引设置选项</p>
+	<h1 id="fd_name">选中回锅肉次数</h1>
+
+	<script src="common.js"></script>
+	<script>
+		count = 0;//统计选中数
+		var btn = document.getElementById('btn');
+		btn.onclick = function(){
+			// 获取所有option选项
+			var sel = document.getElementById('sel');
+			var options = sel.getElementsByTagName('option');
+			var fd_name = document.getElementById('fd_name');
+			// 生成随机索引
+			var index = getRandom(1,options.length - 1);
+			// 根据索引获取option
+			options[index].selected = true;
+			//打印菜名
+			// fd_name.innerText = options[index].value;
+
+			if(options[index].value == "回锅肉"){
+
+				++count;
+				fd_name.innerHTML = options[index].value+":<span>"+count+"</span>"
+			}
+		}
+		
+	</script>
+</body>
+</html>

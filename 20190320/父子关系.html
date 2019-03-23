@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>父子关系</title>
+</head>
+<body>
+	<div id="box">
+		<div>1111</div>
+		<div>2222</div>
+		<p>3333</p>
+		<span>4444</span>
+	</div>
+
+	<script>
+		var box = document.getElementById('box');
+		console.log(box.childNodes); // childNodes 获取所有元素节点（包括内容，标签）
+		for(var i = 0;i < box.childNodes.length;i++){
+			if(box.childNodes[i].nodeType === 1)	//只获取元素节点
+				console.log(box.childNodes[i]);
+		}
+
+		console.log(box.children);// children 方法获取所有子元素
+	</script>
+</body>
+</html>

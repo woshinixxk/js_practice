@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 相册练习</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#link_box{
+			padding: 10px;
+			list-style: none;
+		}
+		#link_box .link_item{
+			float: left;
+		}
+		#link_box .act{
+			border: 2px solid #336600;
+		}
+		#link_box .link_item a{
+			display: inline-block;
+			width: 120px;
+			height: 120px;
+			padding: 5px;
+			box-sizing: border-box;
+		}
+		#link_box .link_item img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		#content{
+			padding: 0px 15px;
+			clear: both;
+		}
+		#content img{
+			width: 500px;
+			height: 500px;
+			object-fit: cover;
+
+		}
+	</style>
+</head>
+<body>
+	<div id="img_box">
+		<ul id="link_box">
+			<li class="link_item act"><a href="img/yellow1.jpg"><img src="img/yellow1.jpg" alt="小黄人1"></a></li>
+			<li class="link_item"><a href="img/yellow2.jpg"><img src="img/yellow2.jpg" alt="小黄人2"></a></li>
+			<li class="link_item"><a href="img/yellow3.jpg"><img src="img/yellow3.jpg" alt="小黄人3"></a></li>
+		</ul>
+		<div id="content">
+			<a href="#"><img src="img/yellow1.jpg" alt="小黄人1"></a>
+		</div>
+	</div>
+
+	<script>
+		// 获取缩略图集合
+		var link_box = document.getElementById('link_box');
+		// 获取ul下所有a标签
+		var links = link_box.getElementsByTagName('a');
+		// console.log(items);
+
+		// 这里用len = link_items.length的好处就是只要找一次就可以了，不用每循环一次就找一次
+		var i = 0 ,len = links.length;
+		for (; i < len; i++) {
+			// 为所有缩略图链接注册点击事件
+			links[i].onclick = function(){
+				// 获取用于展示的容器
+				var con = document.getElementById('content').querySelector('img');
+				// 实现点击切换图片
+				con.src = this.href;
+				// 获取当前事件源的父节点,并添加act类名
+				// var fnode = this.parentNode.classlist.add("act");
+				// 获取当前事件源以外的其他事件源，并删除act类名
+
+				// 取消a标签默认行为
+				return false;
+			}
+		}
+	</script>
+</body>
+</html>

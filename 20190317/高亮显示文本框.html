@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>高亮显示文本框</title>
+	<style>
+		input{
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<input type="text"><br>
+		<input type="text"><br>
+		<input type="text"><br>
+		<input type="text"><br>
+	</div>
+	
+	<script>
+		var txts = document.getElementById('box').querySelectorAll('input[type=text]');
+		var i = 0, len = txts.length;
+		for(; i < len ;i++){
+			// 给每一个文本框注册点击事件
+			var txt = txts[i];
+			txt.onfocus = function(){//焦点事件
+				this.style.backgroundColor = 'gray';
+			}
+			txt.onblur = function(){//失去焦点事件,this表示触发该事件的元素
+				this.style.backgroundColor = '';
+			}
+		}
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索文本框</title>
+	<style>
+		.gray{
+			color: gray;
+		}
+	</style>
+</head>
+<body>
+	<input class="gray" type="text" id="txtSearch" value="请输入文本...">
+	<input type="button" value="按钮">
+
+	<script>
+		/**
+			新知识
+			--------------
+			1 onfocus (HTML DOM 事件对象) 事件在对象获得焦点时发生。
+			2 onblur (HTML DOM 事件对象)事件会在对象失去焦点时发生。
+		*/
+
+		// 自定义函数，用于获取元素Id
+		function my$(id){
+			return document.getElementById(id);
+		}
+
+		var txtSearch = my$('txtSearch');
+		txtSearch.onfocus = function(){// 当搜索框获取焦点时
+			if(this.value === "请输入文本..."){
+				this.value = '';
+				this.className = '';
+			}
+		}
+
+		txtSearch.onblur = function(){// 当搜索框失去焦点时
+			if(this.value.length === 0 ){
+				this.value = '请输入文本...';
+				this.className = 'gray';
+			}
+		}
+
+
+
+
+	</script>
+</body>
+</html>

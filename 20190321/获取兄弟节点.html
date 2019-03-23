@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取兄弟节点</title>
+</head>
+<body>
+	<ul id="box">
+		<li>first</li>
+		<li>2222</li>
+		<li>3333</li>
+		<li id="li">4444</li>
+		<li>5555</li>
+		<li>last</li>
+	</ul>
+
+	<script>
+		var li = document.getElementById('li');
+
+		// 解决IE9以下不兼容问题
+		function getNextElementSibling(parent){
+			if(parent.nextElementSibling){// 如果有nextElementSibling,返回nextElementSibling
+				return parent.nextElementSibling;
+			}
+			var e = parent.nextSibling;
+            while(e && 1 !== e.nodeType)// 值得学习的语法形式,e 必须为true，否则返回e
+                e = e.nextSibling;
+            return e;
+		}
+
+		// 获取下一个兄弟节点
+		console.log(li.nextSibling);
+		// 获取下一个兄弟元素,有兼容性问题（具体参考MDN）
+		// console.log(li.nextElementSibling);
+
+		var nextElement = getNextElementSibling(li);
+		console.log(nextElement);
+
+		// 获取上一个兄弟节点
+		console.log(li.previousSibling);
+		// 获取上一个兄弟元素
+		console.log(li.previousElementSibling);
+
+
+
+	</script>
+</body>
+</html>

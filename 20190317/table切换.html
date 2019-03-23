@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tab 切换</title>
+	<style>
+		#hd span.current{
+			background-color: blue;
+		}
+		#bd div{
+			display:none; 
+		}
+		#bd div.current{
+			display: block;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="hd">
+			<span class="current">体育</span>
+			<span>娱乐</span>
+			<span>新闻</span>
+			<span>综合</span>
+		</div>
+		<div id="bd">
+			<div class="current">这里是体育</div>
+			<div>这里是娱乐</div>
+			<div>这里是新闻</div>
+			<div>这里是综合</div>
+		</div>
+	</div>
+
+	<script>
+		/**
+			新知识
+			--------------
+			1 setAttribute 和 getAttribute 配合使用
+			2 注意类型装换 getAttribute返回的是字符串
+		*/
+
+		var spans = document.querySelectorAll('#hd span');
+		var i = 0, len = spans.length;
+		for (; i < len; i++) {
+			var span = spans[i];
+			// 这句挺关键的，注意！！！！！
+			// 给当前选中span设置自定义属性，用来记录当前索引值，后面div的显示需要用到当前span的索引值
+			span.setAttribute('index',i);
+			span.onmouseover = function(){
+				for(i = 0 ; i < len ; i++){
+					// 找到每一个span，先清空类名
+					spans[i].className = '';
+				}
+				// 再设置当前元素className
+				this.className = 'current';
+				
+				var divs = document.querySelectorAll('#bd div');
+				var divLen = divs.length;
+				for (i = 0; i < divLen; i++) {
+					// 先清空每一个div的className
+					divs[i].className = '';
+				}
+				// 获取span对应索引值
+				var index = parseInt(this.getAttribute('index'));
+				divs[index].className = 'current';
+			}
+		}
+
+	</script>
+</body>
+</html>

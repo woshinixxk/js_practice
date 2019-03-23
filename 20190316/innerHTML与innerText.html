@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>innerHTML 与 innerText</title>
+</head>
+<body>
+	<div id="box">
+		我是box里面的p标签<p>这里是调用innerHTML后的情况，获取开始与结束标签之间的原始内容</p>
+	</div>
+
+	<div id="box2">
+		我是box2里面的p标签<p>这里是调用innerText后的情况，标签是不会显示</p>
+	</div>
+
+	<script>
+		var box = document.getElementById('box');
+		var box2 = document.getElementById('box2');
+		
+		// 1 获取标签之间的内容
+		// innerHTML 与 innerText 获取内容的区别
+		// innerHTML 获取内容的时候，会把标签页获取到
+		// innerHTML 获取内容的时候，会把标签过滤掉
+		console.log(box.innerHTML);
+		console.log(box2.innerText);
+
+		// 2 设置标签之间的内容
+		// 设置内容的时候，如果内容中有标签，会解析标签
+		// innerHTML 不是DOM属性
+		box.innerHTML = "innerHTML测试<h1>文本</h1>";
+	
+		// 设置内容的时候，如果内容有标签，会对标签进行转义
+		box2.innerText = "innerText测试<h1>文本</h1>";
+
+
+	</script>
+</body>
+</html>
