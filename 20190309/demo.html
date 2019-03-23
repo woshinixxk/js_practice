@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js - 几种输出</title>
+</head>
+<body>
+	<h1>我的第一个 Web 页面</h1>
+	<p id="demo">我的第一个段落。</p>
+	<button>点击覆盖</button>
+	<script>
+		document.getElementById("demo").innerHTML="段落已修改。";
+		// 如果在文档已完成加载后执行 document.write，整个 HTML 页面将被覆盖。
+		document.write(Date());
+
+
+	</script>
+</body>
+</html>
