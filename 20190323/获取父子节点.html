@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取父子节点</title>
+	<style>
+		.current{
+			background-color: lightgray;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li class="current"><a href="javascript:void(0)">首页</a></li>
+			<li><a href="javascript:void(0)">博客</a></li>
+			<li><a href="javascript:void(0)">相册</a></li>
+			<li><a href="javascript:void(0)">关于</a></li>
+			<li><a href="javascript:void(0)">帮助</a></li>
+		</ul>
+	</div>
+	
+	<script src="../common.js"></script>
+	<script>
+		var box = document.getElementById('box');
+		// 获取box下第一个子元素ul
+		var ul = getFirstElementChild(box);
+		// 获取ul下的所有li元素
+		var list = ul.children;
+		
+		// 遍历list
+		var i = 0,len = list.length;
+		for (; i < len; i++) {
+			// 获取每个li下的子元素a标签
+			var link = getFirstElementChild(list[i]);
+			// 注册点击事件,这里要的是函数，所有不用加小括号（）
+			link.onclick = linkClick;	
+		}		
+
+		// 事件处理函数
+		function linkClick() {
+			for (i = 0; i < len; i++) {
+				// 取消所有li的高亮显示
+				list[i].className = '';
+			}
+			// 查找当前点击a标签的父元素
+			this.parentNode.className = 'current';
+
+			// 取消a跳转默认行为
+			return false;
+		};
+	</script>
+</body>
+</html>

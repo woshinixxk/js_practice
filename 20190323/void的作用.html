@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>void 的作用</title>
+</head>
+<body>
+	<ul id="box">
+		<li><a href="javascript:void(0)">111</a></li>
+		<li><a href="javascript:void(0)">222</a></li>
+		<li><a href="javascript:void(0)">333</a></li>
+		<li><a href="javascript:void(0)">444</a></li>
+	</ul>
+	<script>
+		// 不管输入什么内容void总是返回undefined,javascript中就是这样规定
+		console.log(void(1 + 2));
+		console.log(void("1 + 2"));
+		console.log(void(0));
+	</script>
+</body>
+</html>
