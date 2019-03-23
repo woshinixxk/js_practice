@@ -1,2 +1,2 @@
-# js_partice
+# js_practice
 javascript学习之旅
