@@ -1,2 +1,2 @@
-# secondProject
-练习
+# js_partice
+javascript学习之旅
