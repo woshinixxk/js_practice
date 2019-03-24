@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>键盘事件</title>
+</head>
+<body>
+	<input type="text" id="txt">
+	<script>
+		//------- 新知识
+		// 1 onkeydown 键盘按下事件
+		// 2 keyCode 键盘对应的键盘码
+		// 3 e调用函数时系统自带的对象
+
+		var txt = document.getElementById('txt');
+		txt.onkeydown = function(e){
+			// keyCode 键盘码
+			console.log(e.keyCode);
+			if(e.keyCode < 48 || e.keyCode > 57){ // 禁止输入字母
+				// 取消键盘默认行为
+				return false;
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>addEventListener 注册事件监听</title>
+</head>
+<body>
+	<input type="button" value="注册" id="btn">
+	<script>
+		// 好处：可以给同一个元素注册多个事件处理函数
+		// 坏处：有兼容性问题，只支持IE9以后（包括IE9）
+		// 参数1 事件名称 不带on
+		// 参数2 事件处理函数
+		// 参数3 事件冒泡 / 事件捕获
+		var btn = document.getElementById('btn');
+		// btn.addEventListener('click',function(){
+		// 	alert("abc");
+		// },false);
+
+		// btn.addEventListener('click',function(){
+		// 	alert("hello");
+		// },false);
+
+
+		// 解决addEventListener兼容性问题
+		// 参数1 事件源
+		// 参数2 事件名称 不带on
+		// 参数3 回调函数
+		function addEventListener(element,eventName,callback){
+			if(element.addEventListener){
+				element.addEventListener(eventName,callback,false);
+			}else if(element.attachEvent){
+				element.attachEvent('on'+ eventName,callback);
+			}else{
+				// 这里是灵活运用不同事件中，故通过获取属性的方式调用
+				element['on'+ eventName] = callback;
+			}
+		}
+
+		addEventListener(btn,'click',function(){
+			alert("!!!");
+		});
+
+	</script>
+</body>
+</html>

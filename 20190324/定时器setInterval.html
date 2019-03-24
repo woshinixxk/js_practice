@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>设置定时器 - setInterval 设置时间间隔</title>
+</head>
+<body>
+	<input type="button" id="btn" value="取消">
+	<script>
+		var timeId = setInterval(function(){
+			console.log(Date());
+		},1000);
+		var btn = document.getElementById('btn');
+		btn.addEventListener('click',function(){
+			clearInterval(timeId);
+		},false);
+	</script>
+</body>
+</html>

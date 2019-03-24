@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>回车切换</title>
+</head>
+<body>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+
+	<script>
+		// 新知识
+		// 1 focus()
+
+		var txts = document.querySelectorAll('input[type=text]');
+		var i = 0,len = txts.length;
+		for (; i < len; i++) {
+			var txt = txts[i];
+			txt.onkeydown = txtKeydown;
+		}
+
+		function txtKeydown(e){
+			// 13 回车
+			if(e.keyCode === 13){
+				// 找到当前元素的下一个元素
+				var next = this.nextElementSibling.nextElementSibling;
+				// 判断是否到底了
+				if(next){
+					next.focus();
+				}
+			}
+		}
+	</script>
+</body>
+</html>

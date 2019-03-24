@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>权限选择</title>
+</head>
+<body>
+	<div id="box">
+		<select id="all" multiple="multiple">
+			<option>增</option>
+			<option>删</option>
+			<option>改</option>
+			<option>查</option>
+		</select>
+		<input type="button" value=">>" id="toRightAll">
+		<input type="button" value="<<" id="toleftAll">
+		<input type="button" value=">" id="toRight">
+		<input type="button" value="<" id="toleft">
+
+		<select id="select" multiple="multiple">
+			
+		</select>
+	</div>
+	
+	<script src="../common.js"></script>
+	<script>
+		// 获取所有选项
+		var all = my$('all');
+		var select = my$('select');
+		var i = 0,len = all.children.length;
+		
+		// 全选 向右
+		my$('toRightAll').onclick = function(){
+			for (; i < len; i++) {
+				// 获取第一个选框中的每个选项
+				var li = all.children[0];
+				// 获取最后的select
+				select.appendChild(li);
+			}
+		}
+
+		// 全选 向左
+		my$('toleftAll').onclick = function(){
+			for (i = 0; i < len; i++) {
+				// 获取第一个选框中的每个选项
+				var li = select.children[0];
+				// 获取最后的select
+				all.appendChild(li);
+			}
+		}
+
+		// 单个权限赋给右边
+		my$('toRight').onclick = function(){
+			for (i = 0; i < len; i++) {
+				var li = all.children[i];
+				if(li.selected){
+					// 将他们移动到另一个选框中
+					select.appendChild(li);
+					i--;
+				}
+			}
+		}
+
+		// 单个权限赋给左边
+		my$('toleft').onclick = function(){
+			for (i = 0; i < len; i++) {
+				var li = select.children[i];
+				if(li.selected){
+					// 将他们移动到另一个选框中
+					all.appendChild(li);
+					i--;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

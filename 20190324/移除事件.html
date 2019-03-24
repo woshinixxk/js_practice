@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>移除事件</title>
+</head>
+<body>
+	<input type="button" value="点击" id="btn">
+	<script>
+		var btn = document.getElementById('btn');
+		btn.addEventListener('click',btnClick,false);
+
+		// 事件移除不能是匿名函数
+		function btnClick(){
+			alert("!!");
+			// 移除事件
+			// 参数1 事件名
+			// 参数2 事件处理函数
+			// 参数3 事件冒泡 / 事件捕获  与addEventListener中一致
+			this.removeEventListener('click',btnClick,false);
+		}
+
+		// 移除事件的兼容性处理
+		function removeEventListener(element,eventName,callback){
+			if(element.removeEventListener){
+				element.removeEventListener(eventName,callback,false);
+			}else if(element.detachEvent){
+				element.detachEvent('on'+ eventName,callback);
+			}else{
+				// 这里是灵活运用不同事件中，故通过获取属性的方式调用
+				element['on'+ eventName] = null;
+			}
+		}
+
+	</script>
+</body>
+</html>

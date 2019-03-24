@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取鼠标的位置</title>
+</head>
+<body>
+	<img id="img" src="./gg.gif"></img>
+
+	<script src="../common.js"></script>
+	<script>
+		var img = document.getElementById('img');
+		document.onmousemove = function(e){ // 给鼠标注册移动事件
+			// 处理兼容性问题
+			e = e || window.event;
+
+			// 要设置left和top必须要脱离文档流
+			img.style.position = 'absolute';
+			// 获取鼠标在页面中的位置, pageX在ie8中存在兼容性问题
+			// img.style.left = e.pageX + 'px';
+			// img.style.top = e.pageY + 'px';
+			img.style.left = getPage(e).pageX + 'px';
+			img.style.top = getPage(e).pageY + 'px';
+		}
+	</script>
+</body>
+</html>

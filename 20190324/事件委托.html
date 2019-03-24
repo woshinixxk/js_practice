@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件委托</title>
+</head>
+<body>
+	<ul id="ul">
+		<li>西施</li>
+		<li>貂蝉</li>
+		<li>杨玉环</li>
+		<li>潘金莲</li>
+	</ul>
+	<script>
+		// 事件委托，将原本li来做的事情，转交给父元素来做（事件冒泡）
+		var ul = document.getElementById('ul');
+		ul.onclick = function(e){// 固定形式
+			// 当事件发生的时候，系统会把事件发生时候的一些数据传递给事件处理函数
+
+			// e 事件对象(事件参数)
+			// e.target  真正触发事件的对象  li
+			e.target.style.backgroundColor = 'blue';
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件对象</title>
+	<style>
+		#box{
+			width: 200px;
+			height: 200px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" value="点击" id="btn">
+	<div id="box"></div>
+	<script>
+		var box = document.getElementById('box');
+		
+		box.onclick = fn;
+		box.onmouseover = fn;
+		box.onmouseout = fn;
+
+		function fn(e){
+			// 存在兼容性问题，IE9之前不支持
+			// 解决兼容性问题
+			e = e || window.event; // e || window.event 返回值为true，如果e为true，则返回e，反之则返回window.event
+
+			switch(e.type){
+				case 'click':
+					console.log('点击事件');
+					break;
+				case 'mouseover':
+					console.log('鼠标经过');
+					break;
+				case 'mouseout':
+					console.log('鼠标离开');
+					break;
+			}
+		}
+	</script>
+</body>
+</html>
