@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简单动画</title>
+	<style>
+		#box{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: lightgray;
+		}
+	</style>
+</head>
+<body>
+	<audio id="audio" controls hidden="true">
+	  	<source src="5395.wav" type="audio/wav">
+		您的浏览器不支持 audio 元素。
+	</audio>
+	<input type="button" value="动画" id="btn">
+	<div id="box"></div>
+	
+	<script>
+		var box = document.getElementById('box');
+		var btn = document.getElementById('btn');
+		var audio = document.getElementById('audio');
+
+		// 1 注册事件
+		btn.addEventListener('click',function(){
+			if(audio.paused){
+				audio.play();
+			}
+			// 2 让box能往右移动
+			var timeId = setInterval(function(){
+				// 获取box当前left位置
+				var current = box.offsetLeft;
+				current += 200;
+
+				// 停到指定位置
+				if(current >= 500){
+					// box停止的地方清除计时器
+					clearInterval(timeId);
+					// 可能到不了500的位置，故偷偷将其改到500的位置
+					box.style.left = '500px';
+					// 后面的box.style.left = current + 'px';会再向右移动200,为确保在500的位置,用return不让函数继续往后执行
+					return;
+				}
+
+				box.style.left = current + 'px';
+			},30);
+		},false);
+	</script>
+</body>
+</html>

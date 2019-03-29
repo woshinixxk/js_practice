@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>同意按钮</title>
+</head>
+<body>
+	<div>
+		请仔细阅读协议
+		....
+		<input id="btn" type="button" disabled="disabled" value="同意（请仔细阅读10秒）">
+	</div>
+	<script>
+		var btn = document.getElementById('btn');
+		var count = 10;
+		var timeId = setInterval(function(){
+			count--;
+			// 如果不到10秒，修改按钮value
+			if (count > 0) {
+				btn.value = '同意（请仔细阅读'+count+'秒）';
+			}else{
+				// 取消不可点击状态
+				btn.disabled = false;
+				// 修改value
+				btn.value = '同意';
+				// 关闭定时器
+				clearInterval(timeId);
+			}
+		},1000); 
+	</script>
+</body>
+</html>

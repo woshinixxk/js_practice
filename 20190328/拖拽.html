@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽</title>
+	<style>
+		#box{
+			position: absolute;
+			width: 200px;
+			height: 200px;
+			background-color: lightgray;
+		}
+		#hd{
+			color: #ffffff;
+			background-color: #666666;
+			cursor: move;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="hd">按住拖拽</div>
+		<div id="bd"></div>
+	</div>
+	
+	<script src="../common.js"></script>
+	<script>
+		var box = document.getElementById('box');
+		var hd = document.getElementById('hd');
+		// 1 鼠标在box中的头部按下的时候，计算鼠标在盒子中的坐标
+		hd.onmousedown = function(e){
+			e = e || event;
+			// 1.2  计算鼠标在盒子中的坐标 = 鼠标在页面中的坐标 -盒子在页面中的坐标
+			var x = getPage(e).pageX - box.offsetLeft;
+			var y = getPage(e).pageY - box.offsetTop;
+
+			// 2 鼠标在整个页面移动的过程中,计算盒子在页面中的坐标
+			document.onmousemove = function(e){
+				// 计算盒子在页面中的坐标 = 鼠标在页面上的坐标 - 鼠标在盒子中的坐标
+				var boxX = getPage(e).pageX - x;
+				var boxY = getPage(e).pageY - y;
+ 
+				box.style.left = boxX + 'px';
+				box.style.top = boxY + 'px';
+			}
+		}
+
+		// 当鼠标弹起的时候，移除move事件
+		document.onmouseup = function(){
+			document.onmousemove = null;
+		}
+
+		
+
+	</script>
+</body>
+</html>

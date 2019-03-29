@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时案例</title>
+</head>
+<body>
+	<div>
+		<strong><span id="day">00</span>天</strong>
+		<strong><span id="hour">00</span>时</strong>
+		<strong><span id="minute">00</span>分</strong>
+		<strong><span id="second">00</span>秒</strong>
+	</div>
+
+	<script>
+		// 1 写一个函数，计算时间差，返回两个日期相差的 天 时 分 秒
+		// 参数1 开始时间		参数2 结束时间
+		function getInterval(start,end){
+			// 时间差 毫秒值
+			var interval = end - start;
+			// 转换成秒 相差的总共的秒数
+			interval /= 1000;
+
+			var day,hour,minute,second;
+
+			day = Math.floor(interval / 60 / 60 / 24);
+			hour = Math.floor(interval / 60 / 60 % 24);
+			minute = Math.floor(interval / 60 % 60);
+			second = Math.floor(interval % 60);
+
+			return {
+				day:day,
+				hour:hour,
+				minute:minute,
+				second:second
+			}
+		}
+
+		var spanDay = document.getElementById('day');
+		var spanHour = document.getElementById('hour');
+		var spanMinute = document.getElementById('minute');
+		var spanSecond = document.getElementById('second');
+
+		// 2 倒计时
+		var end = new Date('2019-11-11 00:00:00');
+
+		setInterval(countDown,1000);
+
+		countDown();
+
+		// 计算
+		function countDown(){
+			// 获取当前日期
+			var start = new Date();
+			// 获取日期差
+			var obj = getInterval(start,end);
+
+			// 数值不够两位时补0
+			obj.day = obj.day < 10 ? '0'+obj.day : obj.day;
+			obj.hour = obj.hour < 10 ? '0'+obj.hour : obj.hour;
+			obj.minute = obj.minute < 10 ? '0'+obj.minute : obj.minute;
+			obj.second = obj.second < 10 ? '0'+obj.second : obj.second;
+
+			spanDay.innerText = obj.day;
+			spanHour.innerText = obj.hour;
+			spanMinute.innerText = obj.minute;
+			spanSecond.innerText = obj.second;
+		}
+
+	</script>
+</body>
+</html>
