@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>onmouseover 与 onmouseenter的区别</title>
+	<style>
+		#box{
+			width: 200px;
+			height: 200px;
+			background-color: red;
+		}
+		#box1{
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="box1"></div>
+	</div>
+	<script>
+		var box = document.getElementById('box');
+		var count = 0;
+		// 会触发事件冒泡
+		// box.onmouseover = function(){
+		// 	count++;
+		// 	console.log(count);
+		// }
+
+		// 不会触发事件冒泡
+		box.onmouseenter = function () {
+			count++;
+			console.log(count);
+		}
+	</script>
+</body>
+</html>
