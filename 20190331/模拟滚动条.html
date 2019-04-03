@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟滚动条</title>
+	<style>
+		#box{
+			position: relative;
+			width: 200px;
+			height: 500px;
+			margin: 50px;
+			border: 1px solid red;
+			overflow: hidden;
+		}
+		#content{
+			position: absolute;
+			padding: 5px 20px 5px 5px;
+		}
+		#scroll{
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 20px;
+			height: 100%;
+			background-color: lightgray;
+		}
+		#bar{
+			position: absolute;
+			top: 0;
+			width: 100%;
+			height: 100px;
+			background-color: red;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="content">
+			start,这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容
+			这是文本内容,这是文本内容,这是文本内容,这是文本内容,end
+			
+		</div>
+		<div id="scroll">
+			<div id="bar"></div>
+		</div>
+	</div>
+	<script src="../common.js"></script>
+	<script>
+		/*
+		**	新知识
+			1 offsetHeight  返回该元素的像素高度，高度包含该元素的垂直内边距和边框，且是一个整数
+			2 scrollHeight	返回元素内容高度的度量，包括由于溢出导致的视图中不可见内容 
+
+		*/
+
+		// 0 获取元素
+		var box = my$('box');
+		var content = my$('content');
+		var scroll = my$('scroll');
+		var bar = my$('bar');
+
+		// 1 根据内容大小计算滚动条高度
+		// 先默认滚动条高度为0
+		var barHeight = 0;
+		if(content.scrollHeight > box.offsetHeight){
+			// box高度 / content高度 = bar高度 / scroll高度
+			barHeight = box.offsetHeight / content.scrollHeight * scroll.offsetHeight;
+			
+		}
+		bar.style.height = barHeight + 'px';
+
+		// 2 拖动滚动条
+		bar.onmousedown = function(e){
+			e = e || event;
+			// 2.1 鼠标在bar上按下的时候，计算鼠标在bar中的位置
+			// barY = 鼠标在页面中的位置 - bar离最近的定位的父元素顶部距离 - box的高度
+			var barY = getPage(e).pageY - bar.offsetTop - box.offsetTop;
+
+			// 2.2 鼠标在页面中移动的时候，计算bar在父容器中的坐标
+			document.onmousemove = function(e){
+				e = e || event;
+				// bar在父容器中的位置
+				// y = 鼠标在页面中的位置 - 鼠标在bar中的位置 -box在在页面中的位置
+				var y =getPage(e).pageY - barY - box.offsetTop;
+
+				// 限制y不能越界
+				y = y < 0 ? 0 : y;
+
+				// bar最大能移动的距离
+				var barMaxY = scroll.offsetHeight - barHeight;
+				y = y > barMaxY ? barMaxY : y;
+				bar.style.top = y + 'px';
+
+				// 3 当拖动滚动条的时候，移动内容
+				// bar移动的距离 / 内容移动的距离 = bar最大移动的距离 / 内容最大移动距离
+				// 内容移动的距离 = bar移动的距离 * 内容最大移动距离 / bar最大移动的距离
+				// 内容最大移动距离
+				var contentMaxY = content.scrollHeight - box.offsetHeight;
+				var contentY = y * contentMaxY / barMaxY;
+				content.style.top = - contentY + 'px';
+			}
+		}
+
+		// 当鼠标弹起的时候，移除移动的事件
+		document.onmouseup = function(){
+			document.onmousemove = null;
+		}
+		
+	</script>
+</body>
+</html>
