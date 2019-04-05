@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型对象</title>
+</head>
+<body>
+	<script>
+		function Person(name,age,subject,score){
+			this.name = name;
+			this.age = age;
+			this.subject = subject;
+			this.score = score;
+		}
+
+		// 可以通过，构造函数的原型对象，给对象增加成员
+		Person.prototype.say = function(){
+			console.log('hi,我是：'+this.name);
+		};
+
+		// 在原型对象中新增属性
+		Person.prototype.type = 'hello world';
+
+		var p1 = new Person('zs',18,'数学',100);
+		var p2 = new Person('ls',19,'语文',80);
+		// 所有对象可以共享 构造函数中原型对象的成员
+		// p1.say();
+		// p2.say();
+
+		p2.type = 'no';
+		console.log(p1.type);
+
+		// 每一个对象都有__proto__
+		// 对象的__proto__ 指向了 构造函数的prototype
+		console.dir(Person.prototype);
+		console.log(p1.__proto__ === Person.prototype);
+
+	</script>
+</body>
+</html>

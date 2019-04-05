@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>系统提供的内置对象</title>
+</head>
+<body>
+	<script>
+		// var arr = [];
+		// var arr = new Array();两者方式都可以
+		// console.dir(arr);
+
+		// var str = new String('abc');
+		// console.dir(str);
+
+		// 扩展内置对象的方法
+		// 求数组中的所有数的和
+		Array.prototype.getSum = function(){
+			var sum = 0;
+			for (var i = 0; i < this.length; i++) {
+				sum += this[i];
+			}
+			return sum;
+		}
+
+		var arr = [1,2,3,4,5,6];
+		console.log(arr.getSum());
+	</script>
+</body>
+</html>

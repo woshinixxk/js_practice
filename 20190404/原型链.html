@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型链</title>
+</head>
+<body>
+	<script>
+		function Person(name,age,sex){
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+
+		var p = new Person('zs',18,'男');
+		console.dir(p);
+		// p中没有toString()方法，通过__proto__下的__proto__
+		// 也就是p原型对象的原型对象（Object）中的toString()
+		// 先找对象自身有没有toString(),没有的话再从原型对象__proto__中找,如果还是没有，再从原型对象的原型对
+		// 象中找，直至都没有，提示报错
+		console.log(p.toString());
+	</script>
+</body>
+</html>

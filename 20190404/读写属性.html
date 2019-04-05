@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>读写属性</title>
+</head>
+<body>
+	<script>
+		function Person(name,age,sex){
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+
+		Person.prototype.type = 'human';
+
+		Person.prototype.toString = function(){
+			return '[person Person]';
+		}
+
+		var p = new Person('zs',18,'男');
+
+		// 不关心原型链，直接给对象p添加一个test属性
+		p.test = '123';
+
+		// 设置属性的时候，直接给对象本身增加一个type属性，即使原型
+		// 对象上有也不去查找
+		p.type = '!!!';
+
+		// 先在对象本身查找，如果没有再去原型链中找
+		console.log(p.type);
+		console.dir(p);
+
+		// 
+		console.log(p.toString());
+
+	</script>
+</body>
+</html>

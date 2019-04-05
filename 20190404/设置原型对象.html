@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>设置原型对象</title>
+</head>
+<body>
+	<script>
+		function Person(name,age,sex){
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+
+		// 如果方法多了，重复的内容也随之变多,故采用后面的方法
+		// Person.prototype.say = function(){
+		// 	console.log('...');
+		// }
+		// Person.prototype.show = function(){
+		// 	console.log('...');
+		// }
+
+
+		// 错误
+		// 必须先设置原型对象，才能调用原型对象中的方法
+		// var p = new Person('zs',18,'男');
+		// p.say();
+
+
+		// 简单的方式设置原型对象
+		// 注意：当重新设置构造函数的prototype，一定要重新设置construction属性
+		Person.prototype = {
+			constructor:Person,
+			say:function(){
+				console.log(this.name);
+			},
+			show:function(){
+				console.log(this.name);
+			}
+		}
+
+		var p = new Person('zs',18,'男');
+		console.dir(Person.prototype);
+		console.log(p.constructor);
+	</script>
+</body>
+</html>

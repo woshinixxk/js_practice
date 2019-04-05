@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建对象</title>
+</head>
+<body>
+	<script>
+		// function fn(name,age,subject,score){}
+
+		// // 创建对象 方式1 
+		// var stu = {// 对象自面量
+		// 	name:'zs',
+		// 	age:18,
+		// 	subject:'语文',
+		// 	score:80,
+		// 	say:function(){
+		// 		console.log('大家好，我是'+this.name);
+		// 	}
+		// }
+		// function fn(stu){}
+
+		// // 方法中的this，是调用这个方法的对象
+		// stu.say();
+
+		// var fun = stu.say;
+		// window.fun();// 此时的this指向的是window
+
+
+		// // 创建对象 方式2	
+		// var stu = new Object();// 与方式1 中的一样
+		// stu.name = 'zs';
+		// stu.age = 18;
+		// stu.subject = '数学';
+		// stu.score = 80;
+		// stu.say = function(){
+		// 	console.log(this.name);
+		// }
+
+
+		// // 创建对象 方式3 工厂模式
+		// function createStudent(name,age,subject,score){
+		// 	var o = new Object();
+		// 	o.name = name;
+		// 	o.age = age;
+		// 	o.subject = subject;
+		// 	o.score = score;
+		// 	return o;
+		// }
+
+		// var s1 = createStudent('zs',18,'语文',80);
+		// var s2 = createStudent('ls',19,'数学',100);
+
+		// 创建对象 方式4 自定义构造函数
+		function Student(name,age,subject,score){
+			this.name = name;
+			this.age = age;
+			this.subject = subject;
+			this.score = score;
+			this.say = function(){
+				console.log(this.name);
+			}
+		}
+
+		// new的作用
+		// 1 在内存中创建一个空对象
+		// 2 让构造函数中的this,指向刚刚创建的对象
+		// 3 执行构造函数（一般情况下，通过this设置对象的成员）
+		// 4 返回对象
+		var s1 = new Student('zs',18,'语文',100);
+
+		// 普通函数的调用，此时this是window
+		var s2 = window.Student('ls',19,'数学',100);
+		console.dir(Student);
+
+	</script>
+</body>
+</html>
