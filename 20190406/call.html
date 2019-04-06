@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>call</title>
+</head>
+<body>
+	<script>
+		var obj = {
+			0:1,
+			1:2,
+			2:3,
+			length:3
+		}
+
+		// obj,"伪数组",借用数组中的删除元素方法,删除对象中的第一二项
+		// 参数1-- obj --this指向
+		// 参数2-- 0 --从第一项开始
+		// 参数3-- 2 --删除两项
+		// Array.prototype.splice.call(obj,0,2);
+		// console.log(obj);
+
+		// obj利用Array中的push完成插入操作
+		// Array.prototype.push.call(obj,15);
+		// console.log(obj);
+
+		arr = [1,2];
+		// 利用Object中的toString方法打印数组
+		// call改变了系统提供的内置方法中的this
+		console.log(Object.prototype.toString.call(arr));
+
+
+
+
+	</script>
+</body>
+</html>

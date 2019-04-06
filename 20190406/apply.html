@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>apply  -- 函数的方法</title>
+</head>
+<body>
+	<script>
+		function fn(a,b){
+			console.log(this);
+			console.log(a + b);
+		}
+
+		var o = {
+			name:'zs',
+			say:function(){
+				console.log(this);
+			}
+		};
+
+		fn.call(o,1,2);
+
+		// [1,2]将数组中第一项放到a的位置,第二项放到b的位置
+		// fn.apply(o,[1,2]);
+		// arr = [23,44,55,11];
+
+		// // apply 跟call bind一样，都是用来改变函数中的this
+		// // 只不过apply参数的形式不同
+		// // 参数1 this指向Math（这里可以为null,但规范是要写上Math,因为是调用Math下的max）
+		// var math = Math.max.apply(Math,arr);
+		// console.log(math);
+	</script>
+</body>
+</html>

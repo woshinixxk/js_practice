@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包</title>
+</head>
+<body>
+	<script>
+		// 闭包是一种现象
+		// 获取随机数
+		function getRandom(){
+			// 随机生成1-10
+			var random = Math.random() * 10 + 1;
+			return function(){
+				return random;
+			}
+		}
+
+		// 这里返回的是函数，不是随机数
+		var fun = getRandom();
+		// 在全局作用域访问另一个作用域（这里指getRandom中的局部作用域）中的random变量
+		var n = fun();
+		console.log(n);
+	</script>
+</body>
+</html>

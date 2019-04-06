@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数的成员 ---核心成员arguments</title>
+</head>
+<body>
+	<script>
+		function fn(){
+			console.log(fn.name);				// 函数名
+			console.log(fn.length);				// 形参个数
+			console.log(fn.arguments);			// 获取到实参 -- 核心成员！！！
+			console.log(fn.arguments.callee);	// 当前函数
+			console.log(fn.caller);				// 调用fn的函数 
+		}
+
+		function fun(){
+			fn(1,2,3);
+		}
+
+		// console.dir(fn);
+		fun();
+	</script>
+</body>
+</html>

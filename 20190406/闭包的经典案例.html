@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包的经典案例</title>
+</head>
+<body>
+	<ul id="box">
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+		<li>444</li>
+		<li>555</li>
+	</ul>
+	<script>
+		// 实在没办法才考虑用闭包，否则不要轻易使用
+		// 一般函数执行完后会销毁，释放内存
+		
+		// 可一旦用了闭包，就会延迟甚至造成无妨释放内存的情况，
+		// 因为有人在访问局部作用域内的变量，那么它就不能被释放
+
+		var list = document.querySelectorAll('#box li');
+		var len = list.length;
+		for (var i = 0; i < len; i++) {
+			var li = list[i];
+			// 当点击的时候，i的值始终是len - 1，因为当点击的时候，循环早已结束
+			// 点击和循环处在两个不同的时空
+			// li.onclick = function(){
+			// 	alert(i);
+			// }
+			
+			// 利用自调用函数，让每次点击提示当前索引
+			(function(index){// 形参
+				li.onclick = function(){
+					alert(index);
+				}
+			})(i)// 实参
+		}
+	</script>
+</body>
+</html>

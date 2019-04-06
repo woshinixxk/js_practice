@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数作为返回值</title>
+</head>
+<body>
+	<script>
+		// 100 + n
+		// 1000 + m
+		// function getSum(n1){// 创造函数的函数
+		// 	return function(n2){
+		// 		return n1 + n2;
+		// 	}
+		// }
+		// 此时get1是函数
+		// var get1 = getSum(100);
+		// console.log(get1(1));
+		// var get2 = getSum(1000);
+		// console.log(get2(1));
+
+
+		// 在页面中显示
+		// var div1 = document.createElement('div');
+		// var body = document.querySelector('body');
+		// body.appendChild(div1);
+		// div1.setAttribute('id','box');
+		// div1.innerText = get1(1);
+
+
+		// -----------------------------------------
+		// 获取随机数
+		function getRandom(){
+			// 随机生成1-10
+			var random = Math.random() * 10 + 1;
+			return function(){
+				return random;
+			}
+		}
+
+		// 这里返回的是函数，不是随机数
+		var fun = getRandom();
+		// 在全局作用域访问另一个作用域（这里指getRandom中的局部作用域）中的random变量
+		var n = fun();
+
+		// console.log(fun());// 这里返回的是随机数
+		// console.log(fun());
+		// console.log(fun());
+
+
+		// 此函数，生成一个函数用来判断 变量的类型是否是指定的类型
+		// function getFun(type){
+		// 	return function(obj){
+		// 		return Object.prototype.toString.call(obj) === type;
+		// 	}
+		// }
+
+		// var isArray = getFun('[object Array]');
+		// var isObject = getFun('[object Object]');
+
+		// console.log(isArray([]));
+		// console.log(isObject({}));
+	</script>
+</body>
+</html>

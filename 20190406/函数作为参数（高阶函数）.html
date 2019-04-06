@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数作为参数</title>
+</head>
+<body>
+	<script>
+		// 高阶函数 ： 函数作为参数 函数作为返回值
+
+		// animate(,fn)
+		// forEach(fn)
+		// setInterval(fn,)
+		// addEventListener('click',fn,false)
+		// arr.sort(fn)
+
+		// var arr = ['a','z','c','b'];
+		// 默认情况下	按照字符的ascii码排序
+		// arr.sort();
+		// console.log(arr);
+
+
+		var arr = [11,111,10,20,50];
+		arr.sort(function(n1,n2){
+			return n1 - n2;// 从小到大排序
+		});
+		console.log(arr);
+
+
+	</script>
+</body>
+</html>

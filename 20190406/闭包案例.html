@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包案例</title>
+</head>
+<body>
+	<script>
+		
+		// var name = "The Window";
+		// var object = {
+		// 	name:"My Object",
+		// 	getNameFunc:function(){
+		// 		return function(){
+		// 			return this.name;
+		// 		};
+		// 	}
+		// };
+		// 这里返回的是"The Window",没有发生闭包情况
+		// object.getNameFunc()()
+		// 首先是object调用getNameFunc()
+		// 之后是windowd调用object.getNameFunc()()
+		// window访问自己私有变量name属性，故没有闭包
+		// console.log(object.getNameFunc()());
+
+
+		// 这里发生闭包
+		var name = "The Window";
+		var object = {
+			name:"My Object",
+			getNameFunc:function(){
+				var that = this;
+				return function(){
+					return that.name;
+				};
+			}
+		};
+		console.log(object.getNameFunc()());
+	</script>
+</body>
+</html>
